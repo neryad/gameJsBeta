@@ -35,7 +35,7 @@ function reset() {
   displayScore.innerHTML = '0';
 
   cells.forEach((cell) => (cell.innerHTML = ''));
-  playerCells[1].innerHTML = ' <div class="player"></div>';
+  playerCells[1].innerHTML = `<div class="player"><div class="imgPlayer"></div></div>`;
 }
 
 function startGame() {
@@ -45,7 +45,7 @@ function startGame() {
 
 function gameLoop() {
   let gameStopped = false;
-  console.log(dropCount);
+
   for (let i = enemyCells.length - 1; i >= 0; i--) {
     const cell = enemyCells[i];
 
@@ -72,8 +72,21 @@ function gameLoop() {
   }
 
   if (dropCount % 2 === 0) {
+    let enemyImg = [
+      'enemy01',
+      'enemy02',
+      'enemy03',
+      'enemy04',
+      'enemy05',
+      'enemy06',
+    ];
+
+    let randomPick = enemyImg[Math.floor(Math.random() * enemyImg.length)];
+    let imgUrl = `./src/assets/${randomPick}.png`;
     const position = Math.floor(Math.random() * 3);
-    enemyCells[position].innerHTML = '<div class="enemy"></div>';
+    enemyCells[
+      position
+    ].innerHTML = `<div class="enemy"><div style="background-image:url(${imgUrl})";  class="imgEnemy"></div></div>`;
   }
 
   if (gameStopped) {
